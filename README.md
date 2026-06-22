@@ -27,7 +27,7 @@ Comparative measurement of CPU and memory usage from `cAdvisor` and `logporter` 
 - [x] Converting metrics to Prometheus format
 - [x] HTTP server and logging
 - [x] Error handling (check for missing data)
-- [x] Getting data in a goroutine
+- [x] Getting data concurrently (async/await with Tokio)
 - [x] Grafana dashboard
 - [x] Docker image
 - [ ] Testing
@@ -42,6 +42,18 @@ cd logporter
 docker build -t lifailon/logporter .
 # or build for different architectures
 docker buildx build --platform linux/amd64,linux/arm64 -t lifailon/logporter .
+```
+
+### Local Development
+
+To build and run locally, you need [Rust](https://www.rust-lang.org/tools/install) installed:
+
+```bash
+# Build release binary
+cargo build --release
+
+# Run with environment variables
+DOCKER_LOG_METRICS=true ./target/release/logporter
 ```
 
 ## Install
